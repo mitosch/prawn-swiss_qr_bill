@@ -1,0 +1,29 @@
+require:
+ - rubocop-performance
+ - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.5
+  NewCops: enable
+
+# Prawn is descriptive and needs more branches (methods)
+Metrics/AbcSize:
+  Max: 25
+  # Enabled: false
+# Metrics/MethodLength:
+#   Enabled: false
+
+# rspec-specific:
+
+# 5 is hard for exception specs
+RSpec/ExampleLength:
+  Max: 7
+
+# Unlimited block length for specs
+Metrics/BlockLength:
+  IgnoredMethods: ['describe']
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'
+

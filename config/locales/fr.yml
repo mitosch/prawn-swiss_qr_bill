@@ -1,0 +1,15 @@
+fr:
+  swiss_qr_bill:
+    payment: Section paiement
+    creditor: Compte / Payable à
+    reference: Référence
+    additional_info: Informations supplémentaires
+    further_info: Informations additionnelles
+    currency: Monnaie
+    amount: Montant
+    receipt: Récépissé
+    acceptance: Point de dépôt
+    separate: A détacher avant le versement
+    debtor: Payable par
+    debtor_blank: Payable par (nom/adresse)
+    debtor_favour: En faveur de

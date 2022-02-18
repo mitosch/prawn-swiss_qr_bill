@@ -1,0 +1,15 @@
+de:
+  swiss_qr_bill:
+    payment: Zahlteil
+    creditor: Konto / Zahlbar an
+    reference: Referenz
+    additional_info: Zusätzliche Informationen
+    further_info: Weitere Informationen
+    currency: Währung
+    amount: Betrag
+    receipt: Empfangsschein
+    acceptance: Annahmestelle
+    separate: Vor der Einzahlung abzutrennen
+    debtor: Zahlbar durch
+    debtor_blank: Zahlbar durch (Name/Adresse)
+    debtor_favour: Zugunsten

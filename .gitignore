@@ -1,0 +1,17 @@
+*~
+.*.swp
+.*.swo
+.DS_Store
+
+.env
+.ruby-version
+
+*.gem
+.bundle
+
+coverage/*
+spec/tmp/*
+
+# spec/dummy/log/*.log
+# pkg/*
+# log/*
