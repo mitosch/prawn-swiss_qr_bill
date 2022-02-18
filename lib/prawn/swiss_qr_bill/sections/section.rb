@@ -69,7 +69,7 @@ module Prawn
             address[:name],
             address[:line1],
             address[:line2],
-            [address[:postal_code], address[:city]].join(' ')
+            [address[:postal_code], address[:city]].compact.join(' ')
           ].compact.join("\n")
         end
 
