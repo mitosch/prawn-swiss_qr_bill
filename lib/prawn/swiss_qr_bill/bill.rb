@@ -12,6 +12,7 @@ module Prawn
       def draw
         @doc.canvas do
           Sections.draw_all(@doc, @data)
+          CuttingLines.new(@doc).draw
         end
       end
     end
