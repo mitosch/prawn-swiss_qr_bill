@@ -3,6 +3,11 @@
 A Ruby library for creating Swiss QR-bill payment slips inside a PDF. It is
 built as a [Prawn](https://github.com/prawnpdf/prawn) extension.
 
+
+[![Gem](https://img.shields.io/gem/v/prawn-swiss_qr_bill?color=green&label=gem%20version)](https://rubygems.org/gems/prawn-swiss_qr_bill)
+[![Build Status](https://github.com/mitosch/prawn-swiss_qr_bill/workflows/CI/badge.svg)](https://github.com/mitosch/prawn-swiss_qr_bill/actions/workflows/ci.yml)
+[![Test Coverage](https://codecov.io/gh/mitosch/prawn-swiss_qr_bill/graph/badge.svg)](https://codecov.io/gh/mitosch/prawn-swiss_qr_bill)
+
 ## Installation
 
 Add the following line to your `Gemfile`:
