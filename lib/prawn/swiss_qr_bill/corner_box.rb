@@ -31,8 +31,8 @@ module Prawn
       private
 
       def set_styles
-        @document.line_width = LINE_WIDTH
         @brain[:line_width] = @document.line_width
+        @document.line_width = LINE_WIDTH
       end
 
       def reset_styles
