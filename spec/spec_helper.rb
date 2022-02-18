@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 require 'simplecov'
+require 'simplecov-cobertura'
 require 'pdf-reader'
 
 SimpleCov.start do
   add_filter 'spec/'
 end
 
-if ENV['CI'] == 'true'
-  require 'simplecov-cobertura'
-  SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
-end
+SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
 
 require 'prawn/swiss_qr_bill'
 
