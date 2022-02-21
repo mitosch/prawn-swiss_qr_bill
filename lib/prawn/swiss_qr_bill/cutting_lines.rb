@@ -17,7 +17,7 @@ module Prawn
       def initialize(document)
         @doc = document
 
-        @brain = {}
+        @brain = { border: { color: nil, width: nil } }
 
         load_specs
       end
@@ -40,8 +40,10 @@ module Prawn
       end
 
       def set_styles
-        @brain[:line_width] = doc.line_width
+        @brain[:border][:width] = doc.line_width
+        @brain[:border][:color] = doc.stroke_color
 
+        doc.stroke_color '000000'
         doc.line_width 0.5
         doc.dash 2, space: 2
       end
@@ -66,7 +68,8 @@ module Prawn
       end
 
       def reset_styles
-        doc.line_width = @brain[:line_width]
+        doc.line_width = @brain[:border][:width]
+        doc.stroke_color = @brain[:border][:color]
         doc.undash
       end
     end
