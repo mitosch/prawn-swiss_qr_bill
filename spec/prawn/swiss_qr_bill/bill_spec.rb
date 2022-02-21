@@ -5,6 +5,15 @@ describe Prawn::SwissQRBill::Bill do
 
   let(:bill_full) { DataManager.build_bill }
 
+  after do |spec|
+    if ENV['DEBUG'] == 'true'
+      description = spec.full_description
+      description.gsub!(/[^A-Za-z_]/, '_')
+      filename = "#{TMP_DIR}/#{description}.pdf"
+      document.render_file(filename)
+    end
+  end
+
   describe '.new' do
     it 'initializes a new bill' do
       bill = described_class.new(document, {})

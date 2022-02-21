@@ -18,7 +18,7 @@ module Prawn
         AMOUNT_WIDTH = 29.mm
 
         # height of the amount label when corner-box has to be displayed
-        AMOUNT_LABEL_HEIGHT = 3.5.mm
+        AMOUNT_LABEL_HEIGHT = 4.mm
 
         # measurement of amount corner-box
         AMOUNT_BOX_WIDTH = 40.mm
