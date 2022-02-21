@@ -1,14 +1,19 @@
 # frozen_string_literal: true
 
 require 'simplecov'
-require 'simplecov-cobertura'
 require 'pdf-reader'
+
+# Where to store temporary PDF files
+TMP_DIR = "#{File.dirname(__FILE__)}/tmp"
 
 SimpleCov.start do
   add_filter 'spec/'
 end
 
-SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
+if ENV['CI'] == 'true'
+  require 'simplecov-cobertura'
+  SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
+end
 
 require 'prawn/swiss_qr_bill'
 
@@ -18,6 +23,4 @@ Prawn::Fonts::AFM.hide_m17n_warning = true
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }
 
 # Ensure tmp dir
-TMP_DIR = "#{File.dirname(__FILE__)}/tmp"
-
 FileUtils.mkdir(TMP_DIR) unless Dir.exist?(TMP_DIR)
