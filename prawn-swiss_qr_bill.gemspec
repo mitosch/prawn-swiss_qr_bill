@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir['lib/**/**/*.rb',
                    'lib/prawn/swiss_qr_bill/specs.yml',
-                   'lib/prawn/swiss_qr_bill/images/*.png',
+                   'assets/images/*', 'assets/fonts/inter/*',
                    'config/locales/*.yml',
                    'prawn-swiss_qr_bill.gemspec',
                    'Gemfile', 'README.md', 'CHANGELOG.mg'

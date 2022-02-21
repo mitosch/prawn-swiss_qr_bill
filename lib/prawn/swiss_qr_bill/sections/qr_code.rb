@@ -18,7 +18,7 @@ module Prawn
 
         QR_PX_SIZE = 1160
 
-        SWISS_CROSS_FILE = File.expand_path("#{__dir__}/../images/swiss_cross.png")
+        SWISS_CROSS_FILE = File.expand_path("#{__dir__}/../../../../assets/images/swiss_cross.png")
 
         MAPPING = {
           creditor_address_type: %i[creditor address type],

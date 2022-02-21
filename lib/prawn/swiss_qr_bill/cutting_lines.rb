@@ -4,7 +4,7 @@ module Prawn
   module SwissQRBill
     # Horizontal and vertical cutting lines with a scissor symbol
     class CuttingLines
-      SCISSOR_FILE = File.expand_path("#{__dir__}/images/scissor.png")
+      SCISSOR_FILE = File.expand_path("#{__dir__}/../../../assets/images/scissor.png")
 
       SCISSOR_WIDTH = 5.mm
       SCISSOR_HEIGHT = 3.mm
