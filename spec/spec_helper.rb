@@ -17,9 +17,6 @@ end
 
 require 'prawn/swiss_qr_bill'
 
-# TODO: remove when fonts are added
-Prawn::Fonts::AFM.hide_m17n_warning = true
-
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }
 
 # Ensure tmp dir
