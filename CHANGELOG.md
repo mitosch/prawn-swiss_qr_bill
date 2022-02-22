@@ -1,4 +1,8 @@
-### master - 2022-02-21
+### master
+
+* no changes
+
+### 0.4.2 - 2022-02-21
 
 #### features
 
