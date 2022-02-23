@@ -19,9 +19,9 @@ module Prawn
       ].freeze
 
       # Draw all sections in the right order.
-      def self.draw_all(document, data)
+      def self.draw_all(document, data, options = {})
         SECTION_CLASSES.each do |klass|
-          klass.new(document, data).draw
+          klass.new(document, data, options).draw
         end
       end
     end

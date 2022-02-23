@@ -19,13 +19,14 @@ module Prawn
         # specifications for subclass' section, @see Specification for details
         attr_accessor :specs
 
-        def initialize(document, data)
+        def initialize(document, data, options = {})
           unless self.class.const_defined?(:KEY)
             raise NotImplementedError, "constant KEY not defined in class #{self.class}"
           end
 
           @doc = document
           @data = data
+          @options = options || {}
 
           load_specs
         end

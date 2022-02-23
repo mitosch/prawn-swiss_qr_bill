@@ -2,6 +2,16 @@
 
 * no changes
 
+### f-validation
+
+#### features
+
+* iban can be validated (it raises `InvalidIBANError`)
+
+#### misc
+
+* cleaning up specs, splitted to feature specs (slower ones)
+
 ### 0.4.2 - 2022-02-21
 
 #### features

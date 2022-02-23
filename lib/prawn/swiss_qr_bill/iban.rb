@@ -2,6 +2,8 @@
 
 module Prawn
   module SwissQRBill
+    class InvalidIBANError < StandardError; end
+
     # Check validity of IBAN.
     #
     # NOTE: *For Switzerland only*

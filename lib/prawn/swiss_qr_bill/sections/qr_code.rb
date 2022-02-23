@@ -71,16 +71,18 @@ module Prawn
         end
 
         def generate_qr_data(data)
-          options = {}
+          flat_data = {}
           MAPPING.each_key do |key|
             # check if the exists
             next unless deep_key?(data, MAPPING[key])
 
-            options[key] = data.dig(*MAPPING[key])
+            flat_data[key] = data.dig(*MAPPING[key])
           end
 
           iban = IBAN.new(data[:creditor][:iban])
-          qr_data = QR::Data.new(options.merge(iban: iban.code))
+          raise InvalidIBANError, "IBAN #{iban.prettify} is invalid" if @options[:validation] && !iban.valid?
+
+          qr_data = QR::Data.new(flat_data.merge(iban: iban.code))
           qr_data.generate
         end
 

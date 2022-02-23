@@ -30,7 +30,7 @@ Define the relevant information for the Swiss QR-bill and render it inside the P
 require 'prawn'
 require 'prawn/swiss_qr_bill'
 
-@qr_data = {
+@bill_data = {
   creditor: {
     iban: 'CH08 3080 8004 1110 4136 9',
     address: {
@@ -49,7 +49,7 @@ require 'prawn/swiss_qr_bill'
 Prawn::Document.generate('output.pdf', page_size: 'A4') do
   text 'A Swiss QR bill'
 
-  swiss_qr_bill(@qr_data)
+  swiss_qr_bill(@bill_data)
 end
 ```
 
@@ -57,13 +57,13 @@ This will render the Swiss QR-bill at the bottom of the page:
 
 ![Swiss QR-bill Example, PDF](./images/sqb_example_01.png)
 
-### Options
+### Bill data structure
 
-The following options are available:
+The following data structure for the bill can be specified:
 
 ```ruby
 # *: mandatory
-@qr_data = {
+@bill_data = {
   creditor: {
     iban: '<iban>',                 # *
     address: {                      # *
@@ -95,6 +95,26 @@ The following options are available:
 ```
 
 If `debtor` or `amount` amount is not given, a box will be printed.
+
+### Options
+
+Calling `swiss_qr_bill()` method with options:
+
+```ruby
+# ...
+Prawn::Document.generate('output.pdf', page_size: 'A4') do
+  # ...
+
+  # raises InvalidIBANError when @bill_data[:creditor][:iban] is invalid
+  swiss_qr_bill(@bill_data, validate: true)
+end
+```
+
+Available options:
+
+| Option | Data type | Description | Default |
+| --- | --- | --- | --- |
+| `validate` | boolean | Validates IBAN and raises `InvalidIBANError` if invalid | `false` |
 
 ## Important
 

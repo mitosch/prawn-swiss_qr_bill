@@ -1,5 +1,15 @@
 # frozen_string_literal: true
 
+# All specs in the features/ folder are the slower ones and target integration
+# of the gem (consumer specific tests).
+#
+# Goal for code coverage is to get 100% withouth feature specs.
+#
+# for faster testing cycles, use the following command:
+#
+#   $ bundle exec rspec --exclude-pattern "spec/features/*_spec.rb"
+#
+
 require 'simplecov'
 require 'pdf-reader'
 

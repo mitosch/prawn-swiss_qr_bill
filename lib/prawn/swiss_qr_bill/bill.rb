@@ -6,16 +6,17 @@ module Prawn
     class Bill
       FONT_DIR = File.expand_path("#{__dir__}/../../../assets/fonts")
 
-      def initialize(document, data)
+      def initialize(document, data, options = {})
         @doc = document
         @data = data
+        @options = options || {}
       end
 
       def draw
         set_font
 
         @doc.canvas do
-          Sections.draw_all(@doc, @data)
+          Sections.draw_all(@doc, @data, @options)
           CuttingLines.new(@doc).draw
         end
       end
