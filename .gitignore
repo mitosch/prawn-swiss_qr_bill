@@ -12,6 +12,8 @@
 coverage/*
 spec/tmp/*
 
+tmp/*
+
 # spec/dummy/log/*.log
 # pkg/*
 # log/*

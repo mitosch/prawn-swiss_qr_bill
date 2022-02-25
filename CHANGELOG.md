@@ -6,11 +6,12 @@
 
 #### features
 
-* iban can be validated (it raises `InvalidIBANError`)
+* reference can be validated (it raises `InvalidReferenceError`)
+* iban can be validated (it raises `MissingIBANError` or `InvalidIBANError`)
 
 #### misc
 
-* cleaning up specs, splitted to feature specs (slower ones)
+* cleaning up specs, splitted to feature specs (slower ones). fast run: `$ bundle exec rspec --exclude-pattern "spec/features/*_spec.rb"`
 
 ### 0.4.2 - 2022-02-21
 

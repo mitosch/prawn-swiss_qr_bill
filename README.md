@@ -114,7 +114,13 @@ Available options:
 
 | Option | Data type | Description | Default |
 | --- | --- | --- | --- |
-| `validate` | boolean | Validates IBAN and raises `InvalidIBANError` if invalid | `false` |
+| `validate` | boolean | Validates IBAN and Reference Number and raises several errors | `false` |
+
+Errors which can be raised during validation:
+
+* `MissingIBANError`: When IBAN is missing.
+* `InvalidIBANError`: When IBAN is invalid. It checks for CH-IBAN only.
+* `InvalidReferenceError`: When IBAN is invalid. It checks for CH-IBAN only.
 
 ## Important
 
