@@ -17,6 +17,7 @@ require 'prawn/swiss_qr_bill/helpers/box_helper'
 
 require 'prawn/swiss_qr_bill/qr/data'
 require 'prawn/swiss_qr_bill/iban'
+require 'prawn/swiss_qr_bill/reference'
 require 'prawn/swiss_qr_bill/padded_box'
 require 'prawn/swiss_qr_bill/corner_box'
 require 'prawn/swiss_qr_bill/cutting_lines'
