@@ -2,9 +2,6 @@
 
 module Prawn
   module SwissQRBill
-    class MissingIBANError < StandardError; end
-    class InvalidIBANError < StandardError; end
-
     # Check validity of IBAN.
     #
     # NOTE: *For Switzerland only*

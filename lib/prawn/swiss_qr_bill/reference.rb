@@ -2,8 +2,6 @@
 
 module Prawn
   module SwissQRBill
-    class InvalidReferenceError < StandardError; end
-
     # Check validity of reference number
     #
     # Refer to the implementation guides of SIX: https://www.paymentstandards.ch/dam/downloads/ig-qr-bill-en.pdf

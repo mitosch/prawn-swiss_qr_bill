@@ -146,7 +146,7 @@ describe 'Validation' do
         iban = bill_data[:creditor][:iban]
         expect do
           document.swiss_qr_bill(bill_data, validate: true)
-        end.to raise_exception(Prawn::SwissQRBill::InvalidIBANError, "IBAN #{iban} is invalid")
+        end.to raise_exception(Prawn::SwissQRBill::QR::InvalidIBANError, "IBAN #{iban} is invalid")
       end
     end
 
@@ -157,7 +157,7 @@ describe 'Validation' do
         bill_data[:creditor][:iban] = nil
         expect do
           document.swiss_qr_bill(bill_data, validate: true)
-        end.to raise_exception(Prawn::SwissQRBill::MissingIBANError, 'IBAN is missing')
+        end.to raise_exception(Prawn::SwissQRBill::QR::MissingIBANError, 'IBAN is missing')
       end
     end
 
@@ -179,7 +179,7 @@ describe 'Validation' do
         bill_data[:reference] = '00 00000 00000 22202 20202 99991'
         expect do
           document.swiss_qr_bill(bill_data, validate: true)
-        end.to raise_exception(Prawn::SwissQRBill::InvalidReferenceError,
+        end.to raise_exception(Prawn::SwissQRBill::QR::InvalidReferenceError,
                                "Reference #{bill_data[:reference]} is invalid")
       end
     end

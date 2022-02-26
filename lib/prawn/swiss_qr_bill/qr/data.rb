@@ -3,6 +3,10 @@
 module Prawn
   module SwissQRBill
     module QR
+      class MissingIBANError < StandardError; end
+      class InvalidIBANError < StandardError; end
+      class InvalidReferenceError < StandardError; end
+
       # The data of the Swiss QR-bill
       #
       # References:
@@ -13,7 +17,7 @@ module Prawn
         # * :default => default value to be set, if key is not given
         # * :format  => Proc to call when generating output
         # * :skippable  => Do not output in QR data if not given
-        Field = Struct.new(:default, :format, :skippable)
+        Field = Struct.new(:default, :format, :skippable, :validation)
 
         # Available fields of the QR code data, ordered.
         FIELDS = {
@@ -22,9 +26,7 @@ module Prawn
           version: Field.new('0200'),
           # fixed: 1
           coding: Field.new('1'),
-          # TODO: check for valid iban
-          # iban: Field.new(nil, ->(value) { value.delete(' ') }),
-          iban: Field.new,
+          iban: Field.new(nil, nil, false, ->(v) { validate_iban(v) }),
           # enum: S, K
           creditor_address_type: Field.new('K'),
           creditor_address_name: Field.new,
@@ -55,7 +57,7 @@ module Prawn
           debtor_address_country: Field.new,
           # enum: QRR, SCOR, NON
           reference_type: Field.new('NON'),
-          reference: Field.new(nil, ->(value) { value && value.delete(' ') }),
+          reference: Field.new(nil, ->(v) { v && v.delete(' ') }, false, ->(v) { v && validate_reference(v) }),
           unstructured_message: Field.new,
           # fixed: EPD
           trailer: Field.new('EPD'),
@@ -70,7 +72,9 @@ module Prawn
         # TODO: check if all fields can be changed by user?
         attr_accessor(*FIELDS.keys)
 
-        def initialize(fields = {})
+        def initialize(fields = {}, options = {})
+          @options = options || {}
+
           # set defaults
           FIELDS.each_key do |field|
             instance_variable_set("@#{field}", FIELDS[field].default)
@@ -83,6 +87,8 @@ module Prawn
         end
 
         def generate
+          validate if @options[:validate]
+
           stack = []
           # TODO: should be each_key ?
           FIELDS.keys.map do |k|
@@ -105,6 +111,38 @@ module Prawn
 
             instance_variable_set("@#{k}", FIELDS[k][:format].call(var)) if FIELDS[k][:format].is_a?(Proc)
           end
+        end
+
+        def validate
+          FIELDS.each_key do |k|
+            next unless FIELDS[k][:validation].is_a?(Proc)
+
+            var = instance_variable_get("@#{k}")
+
+            FIELDS[k][:validation].call(var)
+          end
+
+          true
+        end
+
+        def self.validate_iban(value)
+          # IBAN must be given
+          raise MissingIBANError, 'IBAN is missing' if value.nil? || value.empty?
+
+          # IBAN must be valid
+          iban = IBAN.new(value)
+          raise InvalidIBANError, "IBAN #{iban.prettify} is invalid" unless iban.valid?
+
+          true
+        end
+
+        # shall only be used without nil values
+        def self.validate_reference(value)
+          reference = Reference.new(value)
+
+          raise InvalidReferenceError, "Reference #{value} is invalid" unless reference.valid?
+
+          true
         end
       end
     end
