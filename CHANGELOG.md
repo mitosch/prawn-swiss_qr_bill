@@ -4,6 +4,10 @@
 
 ### f-validation
 
+#### bug fixes
+
+* fix bug where creditor adress city was missing when using combined address type
+
 #### features
 
 * reference can be validated (it raises `InvalidReferenceError`)

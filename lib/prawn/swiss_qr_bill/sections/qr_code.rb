@@ -26,6 +26,7 @@ module Prawn
           creditor_address_line1: %i[creditor address line1],
           creditor_address_line2: %i[creditor address line2],
           creditor_address_postal_code: %i[creditor address postal_code],
+          creditor_address_city: %i[creditor address city],
           creditor_address_country: %i[creditor address country],
           debtor_address_type: %i[debtor address type],
           debtor_address_name: %i[debtor address name],
@@ -75,7 +76,7 @@ module Prawn
 
           flat_data = {}
           MAPPING.each_key do |key|
-            # check if the exists
+            # check if the key exists
             next unless deep_key?(data, MAPPING[key])
 
             flat_data[key] = data.dig(*MAPPING[key])
