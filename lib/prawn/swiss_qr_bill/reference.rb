@@ -7,6 +7,18 @@ module Prawn
     # Check validity of reference number
     #
     # Refer to the implementation guides of SIX: https://www.paymentstandards.ch/dam/downloads/ig-qr-bill-en.pdf
+    #
+    # TODO: SCOR reference check
+    #
+    # Check digit algorithm
+    # In the reference section of RF, letters are converted into numbers and mod-97 (used in IBAN check digit
+    # calculation as well) operation is done to the reference in a numeric format. Result of this calculation will
+    # have to match the check digits indicated in position 3-4.
+    #
+    #
+    # In order to convert the reference string into integers, letters must be converted using the following logic:
+    #
+    # A/a = 10, B/b = 11, ..., Z/z = 35
     class Reference
       MODULO_TABLE = [
         [0, 9, 4, 6, 8, 2, 7, 1, 3, 5],

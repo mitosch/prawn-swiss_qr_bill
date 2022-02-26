@@ -26,6 +26,7 @@ module Prawn
       }.freeze
 
       def initialize
+        # OPTIMIZE: unnessecary assignement
         @specs = load_specs
       end
 

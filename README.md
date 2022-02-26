@@ -124,7 +124,10 @@ Errors which can be raised during validation:
 
 ## Important
 
-This library does not validate (yet) IBAN, reference or the given QR data.
+This library can validate IBAN (switzerland only) and reference number (type QRR).
+Validation of SCOR reference number is planned. It does not validate, if the given
+data is fully valid according to the implementation guidelines.
+
 Please refer to the implementation guidelines and the Swiss QR-bill validaton
 portal by SIX below.
 

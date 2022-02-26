@@ -3,6 +3,8 @@
 module Prawn
   module SwissQRBill
     # Draws a box with corner ticks
+    #
+    # OPTIMIZE: rewrite @document to accessor, like the others
     class CornerBox
       TICK_SIZE = 3.mm
 
