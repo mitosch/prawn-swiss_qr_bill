@@ -1,207 +1,45 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ModuleLength
-module DataManager
-  # rubocop:disable Metrics/MethodLength
+# Support different data structures
+class DataManager
+  DATA_FILE = 'bill_data.yml'
+
+  attr_reader :data
+
+  def initialize
+    @data = {}
+
+    load_data
+  end
+
+  def bill(key)
+    @data[:bill_data][key]
+  end
+
   def self.build_bill(option = :default)
-    bills = {}
+    new.bill(option)
+  end
 
-    bills[:default] = {
-      creditor: {
-        iban: 'CH08 3080 8004 1110 4136 9',
-        address: {
-          name: 'Mischa Schindowski',
-          line1: 'Schybenächerweg 553',
-          line2: nil,
-          postal_code: '5324',
-          city: 'Full-Reuenthal',
-          country: 'CH'
-        }
-      },
-      debtor: {
-        address: {
-          name: 'Simon Muster',
-          line1: 'Musterstrasse 1',
-          line2: nil,
-          postal_code: '8000',
-          city: 'Zürich',
-          country: 'CH'
-        }
-      },
-      amount: 9.90,
-      currency: 'CHF',
-      reference: '00 00000 00000 02202 20202 99991',
-      additional_information: "Auftrag vom 15.06.2020\n" \
-                              "//S1/10/10201409/11/170309/20/14000000/\n" \
-                              '30/106017086'
-    }
+  private
 
-    bills[:no_amount] = {
-      creditor: {
-        iban: 'CH08 3080 8004 1110 4136 9',
-        address: {
-          name: 'Mischa Schindowski',
-          line1: 'Schybenächerweg 553',
-          line2: nil,
-          postal_code: '5324',
-          city: 'Full-Reuenthal',
-          country: 'CH'
-        }
-      },
-      debtor: {
-        address: {
-          name: 'Simon Muster',
-          line1: 'Musterstrasse 1',
-          line2: nil,
-          postal_code: '8000',
-          city: 'Zürich',
-          country: 'CH'
-        }
-      },
-      currency: 'CHF',
-      reference: '00 00000 00000 02202 20202 99991',
-      additional_information: "Auftrag vom 15.06.2020\n" \
-                              "//S1/10/10201409/11/170309/20/14000000/\n" \
-                              '30/106017086'
-    }
+  def load_data
+    @data = YAML.load_file(File.expand_path(DATA_FILE, File.dirname(__FILE__)))
+    @data = symbolize_keys(@data)
+  end
 
-    bills[:no_reference] = {
-      creditor: {
-        iban: 'CH08 3080 8004 1110 4136 9',
-        address: {
-          name: 'Mischa Schindowski',
-          line1: 'Schybenächerweg 553',
-          line2: nil,
-          postal_code: '5324',
-          city: 'Full-Reuenthal',
-          country: 'CH'
-        }
-      },
-      debtor: {
-        address: {
-          name: 'Simon Muster',
-          line1: 'Musterstrasse 1',
-          line2: nil,
-          postal_code: '8000',
-          city: 'Zürich',
-          country: 'CH'
-        }
-      },
-      amount: 9.90,
-      currency: 'CHF',
-      additional_information: "Auftrag vom 15.06.2020\n" \
-                              "//S1/10/10201409/11/170309/20/14000000/\n" \
-                              '30/106017086'
-    }
-
-    bills[:no_additional_information] = {
-      creditor: {
-        iban: 'CH08 3080 8004 1110 4136 9',
-        address: {
-          name: 'Mischa Schindowski',
-          line1: 'Schybenächerweg 553',
-          line2: nil,
-          postal_code: '5324',
-          city: 'Full-Reuenthal',
-          country: 'CH'
-        }
-      },
-      debtor: {
-        address: {
-          name: 'Simon Muster',
-          line1: 'Musterstrasse 1',
-          line2: nil,
-          postal_code: '8000',
-          city: 'Zürich',
-          country: 'CH'
-        }
-      },
-      amount: 9.90,
-      currency: 'CHF',
-      reference: '00 00000 00000 02202 20202 99991'
-    }
-
-    bills[:no_debtor] = {
-      creditor: {
-        iban: 'CH08 3080 8004 1110 4136 9',
-        address: {
-          name: 'Mischa Schindowski',
-          line1: 'Schybenächerweg 553',
-          line2: nil,
-          postal_code: '5324',
-          city: 'Full-Reuenthal',
-          country: 'CH'
-        }
-      },
-      amount: 9.90,
-      currency: 'CHF',
-      reference: '00 00000 00000 02202 20202 99991'
-    }
-
-    bills[:no_debtor_ref] = {
-      creditor: {
-        iban: 'CH08 3080 8004 1110 4136 9',
-        address: {
-          name: 'Mischa Schindowski',
-          line1: 'Schybenächerweg 553',
-          line2: nil,
-          postal_code: '5324',
-          city: 'Full-Reuenthal',
-          country: 'CH'
-        }
-      },
-      amount: 9.90,
-      currency: 'CHF'
-    }
-
-    bills[:no_debtor_ref_amount] = {
-      creditor: {
-        iban: 'CH08 3080 8004 1110 4136 9',
-        address: {
-          name: 'Mischa Schindowski',
-          line1: 'Schybenächerweg 553',
-          line2: nil,
-          postal_code: '5324',
-          city: 'Full-Reuenthal',
-          country: 'CH'
-        }
-      },
-      currency: 'CHF'
-    }
-
-    bills[:invalid_iban] = {
-      creditor: {
-        iban: 'CH08 3088 8004 1110 4136 9',
-        #              ^ should be 0
-        address: {
-          name: 'Mischa Schindowski',
-          line1: 'Schybenächerweg 553',
-          line2: nil,
-          postal_code: '5324',
-          city: 'Full-Reuenthal',
-          country: 'CH'
-        }
-      },
-      debtor: {
-        address: {
-          name: 'Simon Muster',
-          line1: 'Musterstrasse 1',
-          line2: nil,
-          postal_code: '8000',
-          city: 'Zürich',
-          country: 'CH'
-        }
-      },
-      amount: 9.90,
-      currency: 'CHF',
-      reference: '00 00000 00000 02202 20202 99991',
-      additional_information: "Auftrag vom 15.06.2020\n" \
-                              "//S1/10/10201409/11/170309/20/14000000/\n" \
-                              '30/106017086'
-    }
-
-    bills[option]
+  # rubocop:disable Metrics/MethodLength
+  def symbolize_keys(hash)
+    hash.each_with_object({}) do |(key, value), result|
+      new_key = case key
+                when String then key.to_sym
+                else key
+                end
+      new_value = case value
+                  when Hash then symbolize_keys(value)
+                  else value
+                  end
+      result[new_key] = new_value
+    end
   end
   # rubocop:enable Metrics/MethodLength
 end
-# rubocop:enable Metrics/ModuleLength
