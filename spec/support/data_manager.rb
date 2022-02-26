@@ -4,6 +4,8 @@
 class DataManager
   DATA_FILE = 'bill_data.yml'
 
+  MAPPING = Prawn::SwissQRBill::Sections::QRCode::MAPPING
+
   attr_reader :data
 
   def initialize
@@ -12,12 +14,32 @@ class DataManager
     load_data
   end
 
-  def bill(key)
+  def bill_data(key)
     @data[:bill_data][key]
   end
 
-  def self.build_bill(option = :default)
-    new.bill(option)
+  def flat_data(key)
+    data = bill_data(key)
+
+    flat_data = {}
+    MAPPING.each_key do |k|
+      # check if the key exists
+      next unless deep_key?(data, MAPPING[k])
+
+      flat_data[k] = data.dig(*MAPPING[k])
+    end
+
+    iban = Prawn::SwissQRBill::IBAN.new(data[:creditor][:iban])
+
+    flat_data.merge(iban: iban.code)
+  end
+
+  def self.build_bill(option = :default, flat: false)
+    if flat
+      new.flat_data(option)
+    else
+      new.bill_data(option)
+    end
   end
 
   private
@@ -42,4 +64,19 @@ class DataManager
     end
   end
   # rubocop:enable Metrics/MethodLength
+
+  # NOTE: copied from qr_code.rb
+  #
+  # hash: hash to test key path for
+  # key_path: array of symbols to search the key
+  def deep_key?(hash, key_path)
+    path = key_path.dup
+
+    return false if path.empty?
+    return hash.key?(path[0]) if path.length == 1
+
+    last_key = path.pop
+
+    !!hash.dig(*path)&.key?(last_key)
+  end
 end

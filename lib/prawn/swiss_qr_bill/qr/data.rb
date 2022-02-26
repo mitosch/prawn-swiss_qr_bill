@@ -84,17 +84,27 @@ module Prawn
 
         def generate
           stack = []
+          # TODO: should be each_key ?
           FIELDS.keys.map do |k|
             var = instance_variable_get("@#{k}")
 
             # TODO: fix possible wrong format if alt parameters (last one) is given
             next if FIELDS[k][:skippable] && var.nil?
 
+            # TODO: split use #process
             var = FIELDS[k][:format].call(var) if FIELDS[k][:format].is_a?(Proc)
 
             stack << var
           end
           stack.join("\r\n")
+        end
+
+        def process
+          FIELDS.each_key do |k|
+            var = instance_variable_get("@#{k}")
+
+            instance_variable_set("@#{k}", FIELDS[k][:format].call(var)) if FIELDS[k][:format].is_a?(Proc)
+          end
         end
       end
     end

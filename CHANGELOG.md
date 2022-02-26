@@ -6,7 +6,7 @@
 
 #### bug fixes
 
-* fix bug where creditor adress city was missing when using combined address type
+* fix bug where creditor address city was missing when using combined address type
 
 #### features
 
