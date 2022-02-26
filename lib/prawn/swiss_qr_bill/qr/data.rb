@@ -8,10 +8,6 @@ module Prawn
       # References:
       # https://www.paymentstandards.ch/dam/downloads/ig-qr-bill-en.pdf
       # * Chapter 4, Page 25
-      #
-      # TODO: implement skippable (alt schemas, bill info. fields after trailer)
-      # TODO: check if addr-type has to be mentioned if not given?
-      # OPTIMIZE: implement non-changable?
       class Data
         # Simple field structure:
         # * :default => default value to be set, if key is not given
@@ -91,6 +87,7 @@ module Prawn
           FIELDS.keys.map do |k|
             var = instance_variable_get("@#{k}")
 
+            # TODO: fix possible wrong format if alt parameters (last one) is given
             next if FIELDS[k][:skippable] && var.nil?
 
             var = FIELDS[k][:format].call(var) if FIELDS[k][:format].is_a?(Proc)
