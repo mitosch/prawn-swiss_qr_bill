@@ -2,7 +2,7 @@
 
 * no changes
 
-### f-validation
+### 0.5.0 - 2022-02-27
 
 #### bug fixes
 
@@ -10,7 +10,7 @@
 
 #### features
 
-* reference can be validated (it raises `InvalidReferenceError`)
+* reference (QRR, SCOR) can be validated (it raises `InvalidReferenceError`)
 * iban can be validated (it raises `MissingIBANError` or `InvalidIBANError`)
 
 #### misc
