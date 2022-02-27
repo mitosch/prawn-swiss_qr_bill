@@ -67,7 +67,8 @@ describe Prawn::SwissQRBill::QR::Data do
 
       expect do
         qr_data.validate
-      end.to raise_error(Prawn::SwissQRBill::QR::InvalidReferenceError, 'Reference Type NON invalid. Allowed: QRR, SCOR')
+      end.to raise_error(Prawn::SwissQRBill::QR::InvalidReferenceError,
+                         'Reference Type NON invalid. Allowed: QRR, SCOR')
     end
 
     context 'with scor reference' do
