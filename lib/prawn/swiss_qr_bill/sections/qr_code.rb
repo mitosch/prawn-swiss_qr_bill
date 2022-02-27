@@ -11,8 +11,6 @@ module Prawn
       #
       # swiss_cross.png =>   166px ~>  7.mm
       # QR-code:            1090px <~ 46.mm
-      #
-      # TODO: iban check -> raise exception if configured
       class QRCode < Section
         KEY = 'payment.qr_code'
 

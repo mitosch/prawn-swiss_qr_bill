@@ -120,13 +120,12 @@ Errors which can be raised during validation:
 
 * `MissingIBANError`: When IBAN is missing.
 * `InvalidIBANError`: When IBAN is invalid. It checks for CH-IBAN only.
-* `InvalidReferenceError`: When IBAN is invalid. It checks for CH-IBAN only.
+* `InvalidReferenceError`: When reference is invalid. It checks for a valid QRR or SCOR reference
 
 ## Important
 
-This library can validate IBAN (switzerland only) and reference number (type QRR).
-Validation of SCOR reference number is planned. It does not validate, if the given
-data is fully valid according to the implementation guidelines.
+This library can validate IBAN (switzerland only) and reference number (types QRR and SCOR).
+It does not however validate, if the given data is fully valid according to the implementation guidelines.
 
 Please refer to the implementation guidelines and the Swiss QR-bill validaton
 portal by SIX below.

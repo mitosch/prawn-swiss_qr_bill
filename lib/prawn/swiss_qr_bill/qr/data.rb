@@ -13,10 +13,13 @@ module Prawn
       # https://www.paymentstandards.ch/dam/downloads/ig-qr-bill-en.pdf
       # * Chapter 4, Page 25
       class Data
-        # Simple field structure:
+        # Field structure:
         # * :default => default value to be set, if key is not given
         # * :format  => Proc to call when generating output
         # * :skippable  => Do not output in QR data if not given
+        # * :validation => Proc or symbol for validation
+        #   * if Proc given: will be called with value as argument
+        #   * if symbol given: method "#{:symbol}_validator" will be called with value as argument
         Field = Struct.new(:default, :format, :skippable, :validation)
 
         # Available fields of the QR code data, ordered.
@@ -26,7 +29,7 @@ module Prawn
           version: Field.new('0200'),
           # fixed: 1
           coding: Field.new('1'),
-          iban: Field.new(nil, nil, false, ->(v) { validate_iban(v) }),
+          iban: Field.new(nil, nil, false, :iban),
           # enum: S, K
           creditor_address_type: Field.new('K'),
           creditor_address_name: Field.new,
@@ -57,7 +60,7 @@ module Prawn
           debtor_address_country: Field.new,
           # enum: QRR, SCOR, NON
           reference_type: Field.new('NON'),
-          reference: Field.new(nil, ->(v) { v && v.delete(' ') }, false, ->(v) { v && validate_reference(v) }),
+          reference: Field.new(nil, ->(v) { v && v.delete(' ') }, false, :reference),
           unstructured_message: Field.new,
           # fixed: EPD
           trailer: Field.new('EPD'),
@@ -69,7 +72,6 @@ module Prawn
           alternative_parameters: Field.new(nil, nil, true)
         }.freeze
 
-        # TODO: check if all fields can be changed by user?
         attr_accessor(*FIELDS.keys)
 
         def initialize(fields = {}, options = {})
@@ -90,14 +92,13 @@ module Prawn
           validate if @options[:validate]
 
           stack = []
-          # TODO: should be each_key ?
-          FIELDS.keys.map do |k|
+          FIELDS.each_key do |k|
             var = instance_variable_get("@#{k}")
 
             # TODO: fix possible wrong format if alt parameters (last one) is given
             next if FIELDS[k][:skippable] && var.nil?
 
-            # TODO: split use #process
+            # TODO: use #process; generate method should only call validate, then process, then render as string
             var = FIELDS[k][:format].call(var) if FIELDS[k][:format].is_a?(Proc)
 
             stack << var
@@ -115,17 +116,31 @@ module Prawn
 
         def validate
           FIELDS.each_key do |k|
-            next unless FIELDS[k][:validation].is_a?(Proc)
+            next unless FIELDS[k][:validation]
 
             var = instance_variable_get("@#{k}")
 
-            FIELDS[k][:validation].call(var)
+            call_validator(FIELDS[k][:validation], var)
           end
 
           true
         end
 
-        def self.validate_iban(value)
+        private
+
+        def call_validator(validator, value)
+          case validator
+          when Proc
+            # NOTE: currently not in use
+            # :nocov:
+            validator.call(value)
+            # :nocov:
+          when Symbol
+            send("#{validator}_validator", value)
+          end
+        end
+
+        def iban_validator(value)
           # IBAN must be given
           raise MissingIBANError, 'IBAN is missing' if value.nil? || value.empty?
 
@@ -136,9 +151,12 @@ module Prawn
           true
         end
 
-        # shall only be used without nil values
-        def self.validate_reference(value)
-          reference = Reference.new(value)
+        def reference_validator(value)
+          reference = Reference.new(value, reference_type)
+
+          unless %w[QRR SCOR].include?(reference_type)
+            raise InvalidReferenceError, "Reference Type #{reference_type} invalid. Allowed: QRR, SCOR"
+          end
 
           raise InvalidReferenceError, "Reference #{value} is invalid" unless reference.valid?
 

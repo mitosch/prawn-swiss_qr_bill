@@ -60,6 +60,23 @@ describe Prawn::SwissQRBill::QR::Data do
         qr_data.validate
       end.to raise_error(Prawn::SwissQRBill::QR::InvalidReferenceError, "Reference #{reference} is invalid")
     end
+
+    it 'raises an error for wrong reference type' do
+      qr_data = described_class.new(bill_data, validate: true)
+      qr_data.reference_type = 'NON'
+
+      expect do
+        qr_data.validate
+      end.to raise_error(Prawn::SwissQRBill::QR::InvalidReferenceError, 'Reference Type NON invalid. Allowed: QRR, SCOR')
+    end
+
+    context 'with scor reference' do
+      it 'generates valid data' do
+        scor_bill = DataManager.build_bill(:scor_ref, flat: true)
+        qr_data = described_class.new(scor_bill, validate: true)
+        expect(qr_data.validate).to be_truthy
+      end
+    end
   end
 
   describe '#process' do

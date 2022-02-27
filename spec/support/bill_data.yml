@@ -18,6 +18,7 @@ bill_data:
     amount: 9.90
     currency: CHF
     reference: 00 00000 00000 02202 20202 99991
+    reference_type: QRR
     additional_information: |-
       Auftrag vom 15.06.2020
       //S1/10/10201409/11/170309/20/14000000/
@@ -40,6 +41,7 @@ bill_data:
         country: CH
     currency: CHF
     reference: 00 00000 00000 02202 20202 99991
+    reference_type: QRR
     additional_information: |-
       Auftrag vom 15.06.2020
       //S1/10/10201409/11/170309/20/14000000/
@@ -85,6 +87,7 @@ bill_data:
     amount: 9.90
     currency: CHF
     reference: 00 00000 00000 02202 20202 99991
+    reference_type: QRR
   no_debtor:
     creditor:
       iban: CH08 3080 8004 1110 4136 9
@@ -97,6 +100,7 @@ bill_data:
     amount: 9.90
     currency: CHF
     reference: 00 00000 00000 02202 20202 99991
+    reference_type: QRR
   no_debtor_ref:
     creditor:
       iban: CH08 3080 8004 1110 4136 9
@@ -138,7 +142,26 @@ bill_data:
     amount: 9.90
     currency: CHF
     reference: 00 00000 00000 02202 20202 99991
+    reference_type: QRR
     additional_information: |-
       Auftrag vom 15.06.2020
       //S1/10/10201409/11/170309/20/14000000/
       30/106017086
+  scor_ref:
+    creditor:
+      iban: CH58 0079 1123 0008 8901 2
+      address:
+        name: Max Muster & Söhne
+        line1: Musterstrasse 123
+        line2: 8000 Seldwyla
+        country: CH
+    debtor:
+      address:
+        name: Simon Muster
+        line1: Simonstrasse 1
+        line2: 5000 Aarau
+        country: CH
+    amount: 2500.25
+    currency: CHF
+    reference: RF18 5390 0754 7034
+    reference_type: SCOR
