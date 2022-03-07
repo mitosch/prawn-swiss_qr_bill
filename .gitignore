@@ -2,6 +2,7 @@
 .*.swp
 .*.swo
 .DS_Store
+.swp
 
 .env
 .ruby-version
