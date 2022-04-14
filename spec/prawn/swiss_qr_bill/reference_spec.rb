@@ -18,6 +18,20 @@ describe Prawn::SwissQRBill::Reference do
     end
   end
 
+  describe '.modulo10_recursive' do
+    context 'when number given' do
+      it 'returns the correct check digit' do
+        expect(described_class.modulo10_recursive('2202202029999')).to eq(1)
+      end
+    end
+
+    context 'when number with leading zeros given' do
+      it 'returns the correct check digit' do
+        expect(described_class.modulo10_recursive('000002202202029999')).to eq(1)
+      end
+    end
+  end
+
   describe '#valid? (QRR)' do
     # valid: check digits
     context 'when valid reference given' do

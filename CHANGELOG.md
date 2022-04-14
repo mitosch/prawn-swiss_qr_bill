@@ -2,6 +2,10 @@
 
 * no changes
 
+### 0.5.1 - 2022-04-14
+
+* For QRR reference: make modulo10 recursive method accessible as instance method to generate check digit
+
 ### 0.5.0 - 2022-02-27
 
 #### bug fixes

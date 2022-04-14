@@ -53,7 +53,7 @@ module Prawn
       def valid_check_digits?
         case @type
         when 'QRR'
-          check_digits == modulo10_recursive(number)
+          check_digits == Reference.modulo10_recursive(number)
         when 'SCOR'
           scor_to_i % 97 == 1
         end
@@ -75,17 +75,23 @@ module Prawn
         end
       end
 
-      private
-
-      def standardize(reference)
-        reference.to_s.strip.gsub(/\s+/, '').upcase
-      end
-
-      def modulo10_recursive(reference)
+      # Generate a check digit with modulo 10 recursive:
+      #
+      # Can be used as an instance method:
+      #
+      #   Prawn::SwissQRBill::Reference.modulo10_recursive("2202202029999")
+      #   # will return 1
+      def self.modulo10_recursive(reference)
         numbers = reference.to_s.chars.map(&:to_i)
         report = numbers.inject(0) { |memo, c| MODULO_TABLE[memo][c] }
 
         (10 - report) % 10
+      end
+
+      private
+
+      def standardize(reference)
+        reference.to_s.strip.gsub(/\s+/, '').upcase
       end
     end
   end
