@@ -36,7 +36,8 @@ module Prawn
           amount: [:amount],
           currency: [:currency],
           reference: [:reference],
-          reference_type: [:reference_type]
+          reference_type: [:reference_type],
+          additional_information: [:additional_information]
         }.freeze
 
         def draw
