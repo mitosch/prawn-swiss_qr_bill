@@ -37,7 +37,8 @@ module Prawn
           currency: [:currency],
           reference: [:reference],
           reference_type: [:reference_type],
-          additional_information: [:additional_information]
+          unstructured_message: [:unstructured_message],
+          bill_information: [:bill_information]
         }.freeze
 
         def draw

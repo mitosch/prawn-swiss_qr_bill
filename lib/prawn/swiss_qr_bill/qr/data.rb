@@ -64,11 +64,7 @@ module Prawn
           unstructured_message: Field.new,
           # fixed: EPD
           trailer: Field.new('EPD'),
-
-          # additional:
-
           bill_information: Field.new(nil, nil, true),
-          additional_information: Field.new(nil, nil, true),
           # key-value pairs:
           alternative_parameters: Field.new(nil, nil, true)
         }.freeze
