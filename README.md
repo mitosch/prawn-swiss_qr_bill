@@ -43,7 +43,9 @@ require 'prawn/swiss_qr_bill'
   amount: 9.90,
   currency: 'CHF',
   reference: '00 00000 00000 02202 20202 99991',
-  reference_type: 'QRR'
+  reference_type: 'QRR',
+  unstructured_message: 'Bill number 2202.20202.9999',
+  bill_information: '//S1/10/2202202029999/11/220819'
 }
 
 Prawn::Document.generate('output.pdf', page_size: 'A4') do
