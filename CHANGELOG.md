@@ -2,6 +2,10 @@
 
 * no changes
 
+### 0.5.2 - 2022-08-25
+
+* Add additional information (unstructured_message, bill_information). Thanks to @noefroidevaux.
+
 ### 0.5.1 - 2022-04-14
 
 * For QRR reference: make modulo10 recursive method accessible as instance method to generate check digit
