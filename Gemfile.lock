@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    prawn-swiss_qr_bill (0.5.1)
+    prawn-swiss_qr_bill (0.5.2)
       i18n (~> 1.8)
       prawn (~> 2.0)
       rqrcode (~> 2.0)
@@ -13,11 +13,11 @@ GEM
     afm (0.2.2)
     ast (2.4.2)
     chunky_png (1.4.0)
-    concurrent-ruby (1.1.9)
+    concurrent-ruby (1.1.10)
     diff-lcs (1.5.0)
     docile (1.4.0)
     hashery (2.1.2)
-    i18n (1.10.0)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     parallel (1.21.0)
     parser (3.1.0.0)
@@ -35,7 +35,7 @@ GEM
     rainbow (3.1.1)
     regexp_parser (2.2.0)
     rexml (3.2.5)
-    rqrcode (2.1.1)
+    rqrcode (2.1.2)
       chunky_png (~> 1.0)
       rqrcode_core (~> 1.0)
     rqrcode_core (1.2.0)
