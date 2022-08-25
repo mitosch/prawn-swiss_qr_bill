@@ -20,7 +20,7 @@ describe Prawn::SwissQRBill::QR::Data do
       qr_data_string = qr_data.generate
       qr_data_array = qr_data_string.split("\r\n")
 
-      expect(qr_data_array.length).to eq(31)
+      expect(qr_data_array.length).to eq(32)
       expect(qr_data_array[28]).to eq('000000000000022022020299991')
     end
     # rubocop:enable RSpec/MultipleExpectations

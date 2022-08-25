@@ -82,4 +82,12 @@ describe 'PDF generation' do
       expect(reader_for_bill.pages[0].text).not_to include(I18n.t('reference', scope: 'swiss_qr_bill'))
     end
   end
+
+  context 'when no additional information' do
+    let(:bill_data) { DataManager.build_bill(:no_additional_information) }
+
+    it 'generates a correct pdf' do
+      expect(reader_for_bill.pages.length).to eq(1)
+    end
+  end
 end
