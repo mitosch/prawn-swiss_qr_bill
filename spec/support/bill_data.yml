@@ -19,10 +19,8 @@ bill_data:
     currency: CHF
     reference: 00 00000 00000 02202 20202 99991
     reference_type: QRR
-    additional_information: |-
-      Auftrag vom 15.06.2020
-      //S1/10/10201409/11/170309/20/14000000/
-      30/106017086
+    unstructured_message: Auftrag vom 15.06.2020
+    bill_information: //S1/10/10201409/11/170309/20/14000000/30/106017086
   no_amount:
     creditor:
       iban: CH08 3080 8004 1110 4136 9
@@ -42,10 +40,8 @@ bill_data:
     currency: CHF
     reference: 00 00000 00000 02202 20202 99991
     reference_type: QRR
-    additional_information: |-
-      Auftrag vom 15.06.2020
-      //S1/10/10201409/11/170309/20/14000000/
-      30/106017086
+    unstructured_message: Auftrag vom 15.06.2020
+    bill_information: //S1/10/10201409/11/170309/20/14000000/30/106017086
   no_reference:
     creditor:
       iban: CH08 3080 8004 1110 4136 9
@@ -64,10 +60,8 @@ bill_data:
         country: CH
     amount: 9.90
     currency: CHF
-    additional_information: |-
-      Auftrag vom 15.06.2020
-      //S1/10/10201409/11/170309/20/14000000/
-      30/106017086
+    unstructured_message: Auftrag vom 15.06.2020
+    bill_information: //S1/10/10201409/11/170309/20/14000000/30/106017086
   no_additional_information:
     creditor:
       iban: CH08 3080 8004 1110 4136 9
@@ -143,10 +137,8 @@ bill_data:
     currency: CHF
     reference: 00 00000 00000 02202 20202 99991
     reference_type: QRR
-    additional_information: |-
-      Auftrag vom 15.06.2020
-      //S1/10/10201409/11/170309/20/14000000/
-      30/106017086
+    unstructured_message: Auftrag vom 15.06.2020
+    bill_information: //S1/10/10201409/11/170309/20/14000000/30/106017086
   scor_ref:
     creditor:
       iban: CH58 0079 1123 0008 8901 2

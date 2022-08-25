@@ -13,7 +13,7 @@ module Prawn
           box do
             draw_payable_to
             draw_reference if @data.key?(:reference)
-            draw_additional_information if @data.key?(:additional_information)
+            draw_additional_information if @data.key?(:unstructured_message) || @data.key?(:bill_information)
             draw_payable_by
           end
         end
@@ -37,7 +37,7 @@ module Prawn
 
         def draw_additional_information
           label I18n.t('additional_info', scope: i18n_scope)
-          content @data[:additional_information]
+          content [@data[:unstructured_message], @data[:bill_information]].join(' ')
 
           line_spacing
         end
