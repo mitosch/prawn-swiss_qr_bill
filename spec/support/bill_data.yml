@@ -44,6 +44,47 @@ bill_data:
     reference_type: QRR
     unstructured_message: Auftrag vom 15.06.2020
     bill_information: //S1/10/10201409/11/170309/20/14000000/30/106017086
+  no_currency:
+    creditor:
+      iban: CH08 3080 8004 1110 4136 9
+      address:
+        name: Mischa Schindowski
+        line1: Schybenächerweg 553
+        postal_code: 5324
+        city: Full-Reuenthal
+        country: CH
+    debtor:
+      address:
+        name: Simon Muster
+        line1: Musterstrasse 1
+        postal_code: 8000
+        city: Zürich
+        country: CH
+    reference: 00 00000 00000 02202 20202 99991
+    reference_type: QRR
+    unstructured_message: Auftrag vom 15.06.2020
+    bill_information: //S1/10/10201409/11/170309/20/14000000/30/106017086
+  currency_eur:
+    creditor:
+      iban: CH08 3080 8004 1110 4136 9
+      address:
+        name: Mischa Schindowski
+        line1: Schybenächerweg 553
+        postal_code: 5324
+        city: Full-Reuenthal
+        country: CH
+    debtor:
+      address:
+        name: Simon Muster
+        line1: Musterstrasse 1
+        postal_code: 8000
+        city: Zürich
+        country: CH
+    currency: EUR
+    reference: 00 00000 00000 02202 20202 99991
+    reference_type: QRR
+    unstructured_message: Auftrag vom 15.06.2020
+    bill_information: //S1/10/10201409/11/170309/20/14000000/30/106017086
   no_reference:
     creditor:
       iban: CH08 3080 8004 1110 4136 9

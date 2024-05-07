@@ -2,6 +2,8 @@
 
 describe Prawn::SwissQRBill::QR::Data do
   let(:bill_data) { DataManager.build_bill(:default, flat: true) }
+  let(:bill_data_no_currency) { DataManager.build_bill(:no_currency, flat: true) }
+  let(:bill_data_currency_eur) { DataManager.build_bill(:currency_eur, flat: true) }
 
   describe '.new' do
     it 'initializes the qr data with defaults' do
@@ -117,6 +119,33 @@ describe Prawn::SwissQRBill::QR::Data do
         qr_data.process
 
         expect(qr_data.reference).to eq('000000000000022022020299991')
+      end
+    end
+
+    context 'with currency CHF' do
+      it 'generates data with CHF' do
+        qr_data = described_class.new(bill_data)
+        qr_data_string = qr_data.generate
+        qr_data_array = qr_data_string.split("\r\n")
+        expect(qr_data_array[19]).to eq('CHF')
+      end
+    end
+
+    context 'without currency' do
+      it 'generates data with CHF' do
+        qr_data = described_class.new(bill_data_no_currency)
+        qr_data_string = qr_data.generate
+        qr_data_array = qr_data_string.split("\r\n")
+        expect(qr_data_array[19]).to eq('CHF')
+      end
+    end
+
+    context 'with currency EUR' do
+      it 'generates data with EUR' do
+        qr_data = described_class.new(bill_data_currency_eur)
+        qr_data_string = qr_data.generate
+        qr_data_array = qr_data_string.split("\r\n")
+        expect(qr_data_array[19]).to eq('EUR')
       end
     end
   end

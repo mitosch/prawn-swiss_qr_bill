@@ -91,8 +91,24 @@ describe 'PDF generation' do
     end
   end
 
-  context 'when currency EUR' do
-    let(:bill_data) { DataManager.build_bill(:default).merge(currency: 'EUR') }
+  context 'when currency is CHF' do
+    let(:bill_data) { DataManager.build_bill }
+
+    it 'generates a correct pdf' do
+      expect(reader_for_bill.pages[0].text).to include('CHF').twice
+    end
+  end
+
+  context 'when no currency' do
+    let(:bill_data) { DataManager.build_bill(:no_currency) }
+
+    it 'generates a correct pdf' do
+      expect(reader_for_bill.pages[0].text).to include('CHF').twice
+    end
+  end
+
+  context 'when currency is EUR' do
+    let(:bill_data) { DataManager.build_bill(:currency_eur) }
 
     it 'generates a correct pdf' do
       expect(reader_for_bill.pages[0].text).to include('EUR').twice
