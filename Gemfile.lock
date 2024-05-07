@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    prawn-swiss_qr_bill (0.5.2)
+    prawn-swiss_qr_bill (0.5.3)
       i18n (~> 1.8)
       matrix (~> 0.4)
       prawn (~> 2.0)
@@ -14,11 +14,11 @@ GEM
     afm (0.2.2)
     ast (2.4.2)
     chunky_png (1.4.0)
-    concurrent-ruby (1.1.10)
+    concurrent-ruby (1.2.3)
     diff-lcs (1.5.0)
     docile (1.4.0)
     hashery (2.1.2)
-    i18n (1.12.0)
+    i18n (1.14.4)
       concurrent-ruby (~> 1.0)
     matrix (0.4.2)
     parallel (1.21.0)
