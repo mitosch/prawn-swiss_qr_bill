@@ -2,6 +2,10 @@
 
 * no changes
 
+### 0.5.3 - 2024-05-07
+
+* Fix bug where currency could not be set to EUR. Thanks to @franco.
+
 ### 0.5.2 - 2022-08-25
 
 * Add additional information (unstructured_message, bill_information). Thanks to @noefroidevaux.
