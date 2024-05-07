@@ -38,7 +38,7 @@ module Prawn
           doc.bounding_box([doc.bounds.left, doc.bounds.top],
                            width: CURRENCY_WIDTH, height: specs.height) do
             doc.pad_top(1.4) { label I18n.t('currency', scope: i18n_scope) }
-            doc.pad_top(2.5) { content 'CHF' }
+            doc.pad_top(2.5) { content @data.fetch(:currency, 'CHF') }
           end
         end
 

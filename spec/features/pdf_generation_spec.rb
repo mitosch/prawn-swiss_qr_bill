@@ -90,4 +90,12 @@ describe 'PDF generation' do
       expect(reader_for_bill.pages.length).to eq(1)
     end
   end
+
+  context 'when currency EUR' do
+    let(:bill_data) { DataManager.build_bill(:default).merge(currency: 'EUR') }
+
+    it 'generates a correct pdf' do
+      expect(reader_for_bill.pages[0].text).to include('EUR').twice
+    end
+  end
 end
