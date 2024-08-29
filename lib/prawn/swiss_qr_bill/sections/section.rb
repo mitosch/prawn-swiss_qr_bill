@@ -68,10 +68,13 @@ module Prawn
         def build_address(address)
           [
             address[:name],
-            address[:line1],
-            address[:line2],
+            if address[:type] == 'S'
+              [address[:line1], address[:line2]].compact.join(' ')
+            else
+              [address[:line1], address[:line2]]
+            end,
             [address[:postal_code], address[:city]].compact.join(' ')
-          ].compact.join("\n")
+          ].flatten.compact.join("\n")
         end
 
         def load_specs

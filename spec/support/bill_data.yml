@@ -5,7 +5,8 @@ bill_data:
       address:
         type: S
         name: Mischa Schindowski
-        line1: Schybenächerweg 553
+        line1: Schybenächerweg
+        line2: 553
         postal_code: 5324
         city: Full-Reuenthal
         country: CH
@@ -13,7 +14,8 @@ bill_data:
       address:
         type: S
         name: Simon Muster
-        line1: Musterstrasse 1
+        line1: Musterstrasse
+        line2: 1
         postal_code: 8000
         city: Zürich
         country: CH
@@ -111,7 +113,8 @@ bill_data:
       address:
         type: S
         name: Mischa Schindowski
-        line1: Schybenächerweg 553
+        line1: Schybenächerweg
+        line2: 553
         postal_code: 5324
         city: Full-Reuenthal
         country: CH
@@ -119,7 +122,8 @@ bill_data:
       address:
         type: S
         name: Simon Muster
-        line1: Musterstrasse 1
+        line1: Musterstrasse
+        line2: 1
         postal_code: 8000
         city: Zürich
         country: CH
@@ -202,3 +206,39 @@ bill_data:
     currency: CHF
     reference: RF18 5390 0754 7034
     reference_type: SCOR
+  s_type_address:
+    creditor:
+      iban: CH58 0079 1123 0008 8901 2
+      address:
+        type: S
+        name: Mischa Schindowski
+        line1: Schybenächerweg
+        line2: 553
+        postal_code: 5324
+        city: Full-Reuenthal
+        country: CH
+    debtor:
+      address:
+        type: S
+        name: Simon Muster
+        line1: Musterstrasse
+        line2: 1
+        postal_code: 8000
+        city: Zürich
+        country: CH
+  k_type_address:
+    creditor:
+      iban: CH58 0079 1123 0008 8901 2
+      address:
+        type: K
+        name: Max Muster & Söhne
+        line1: Musterstrasse 123
+        line2: 8000 Seldwyla
+        country: CH
+    debtor:
+      address:
+        type: K
+        name: Simon Muster
+        line1: Simonstrasse 1
+        line2: 5000 Aarau
+        country: CH
