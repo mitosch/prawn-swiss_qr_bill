@@ -151,8 +151,8 @@ Original author: Mischa Schindowski
 * [Prawn](https://github.com/prawnpdf/prawn): Fast, Nimble PDF Generation For Ruby
 * [Swiss QR-bill Validation Portal](https://validation.iso-payments.ch/qrrechnung)
 * [Swiss Payment Standards](https://www.paymentstandards.ch):
-  * [Style Guide QR-bill](https://www.paymentstandards.ch/dam/downloads/style-guide-en.pdf)
-  * [Implementation Guidelines QR-bill](https://www.paymentstandards.ch/dam/downloads/ig-qr-bill-en.pdf)
+  * [Style Guide QR-bill](https://www.six-group.com/dam/download/banking-services/standardization/qr-bill/style-guide-qr-bill-en.pdf)
+  * [Implementation Guidelines QR-bill](https://www.six-group.com/dam/download/banking-services/standardization/qr-bill/ig-qr-bill-v2.2-en.pdf)
 
 ## Copyright
 

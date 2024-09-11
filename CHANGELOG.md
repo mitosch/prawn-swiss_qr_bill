@@ -2,6 +2,11 @@
 
 * no changes
 
+### 0.5.4 - 2024-09-11
+
+* Fix bug where streed and building number of structured address was not displayed on one line. Thanks to @franco.
+* Fix wrong rendering of Inter font. Thanks to @dianedelallee.
+
 ### 0.5.3 - 2024-05-07
 
 * Fix bug where currency could not be set to EUR. Thanks to @franco.
