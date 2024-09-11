@@ -5,6 +5,8 @@ require:
 AllCops:
   TargetRubyVersion: 2.5
   NewCops: enable
+  Exclude:
+    - prawn-swiss_qr_bill.gemspec
 
 # Prawn is descriptive and needs more branches (methods)
 Metrics/AbcSize:
@@ -21,9 +23,11 @@ RSpec/ExampleLength:
 
 # Unlimited block length for specs
 Metrics/BlockLength:
-  IgnoredMethods: ['describe']
+  AllowedMethods: ['describe']
 
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - 'spec/**/*'
 
+RSpec/NoExpectationExample:
+  Enabled: false

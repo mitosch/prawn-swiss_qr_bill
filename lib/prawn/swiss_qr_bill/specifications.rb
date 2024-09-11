@@ -19,10 +19,10 @@ module Prawn
         height: Spec.new(nil, ->(v) { from_mm(v) }),
         content_font_size: Spec.new,
         content_font_leading: Spec.new(0),
-        content_font_style: Spec.new(:normal, ->(v) { v.to_sym }),
+        content_font_style: Spec.new(:normal, lambda(&:to_sym)),
         label_font_size: Spec.new,
         label_font_leading: Spec.new(0),
-        label_font_style: Spec.new(:bold, ->(v) { v.to_sym })
+        label_font_style: Spec.new(:bold, lambda(&:to_sym))
       }.freeze
 
       def initialize

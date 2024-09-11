@@ -30,4 +30,4 @@ require 'prawn/swiss_qr_bill'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }
 
 # Ensure tmp dir
-FileUtils.mkdir(TMP_DIR) unless Dir.exist?(TMP_DIR)
+FileUtils.mkdir_p(TMP_DIR)

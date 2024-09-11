@@ -8,7 +8,7 @@ describe 'Compatibility' do
 
   describe '#swiss_qr_bill' do
     context 'when one argument is given' do
-      it 'works' do
+      it 'works without arguments' do
         document.swiss_qr_bill(bill_full)
       end
     end
