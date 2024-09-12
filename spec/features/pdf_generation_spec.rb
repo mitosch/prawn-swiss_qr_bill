@@ -11,7 +11,7 @@ describe 'PDF generation' do
   end
 
   before do
-    FileUtils.rm(outfile) if File.exist?(outfile)
+    FileUtils.rm_f(outfile)
   end
 
   after do |spec|

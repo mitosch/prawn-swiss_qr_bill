@@ -76,12 +76,12 @@ module Prawn
 
           # set defaults
           FIELDS.each_key do |field|
-            instance_variable_set("@#{field}", FIELDS[field].default)
+            instance_variable_set(:"@#{field}", FIELDS[field].default)
           end
 
           # set given
           fields.each_key do |field|
-            instance_variable_set("@#{field}", fields[field])
+            instance_variable_set(:"@#{field}", fields[field])
           end
         end
 
@@ -90,7 +90,7 @@ module Prawn
 
           stack = []
           FIELDS.each_key do |k|
-            var = instance_variable_get("@#{k}")
+            var = instance_variable_get(:"@#{k}")
 
             # TODO: fix possible wrong format if alt parameters (last one) is given
             next if FIELDS[k][:skippable] && var.nil?
@@ -105,9 +105,9 @@ module Prawn
 
         def process
           FIELDS.each_key do |k|
-            var = instance_variable_get("@#{k}")
+            var = instance_variable_get(:"@#{k}")
 
-            instance_variable_set("@#{k}", FIELDS[k][:format].call(var)) if FIELDS[k][:format].is_a?(Proc)
+            instance_variable_set(:"@#{k}", FIELDS[k][:format].call(var)) if FIELDS[k][:format].is_a?(Proc)
           end
         end
 
@@ -115,7 +115,7 @@ module Prawn
           FIELDS.each_key do |k|
             next unless FIELDS[k][:validation]
 
-            var = instance_variable_get("@#{k}")
+            var = instance_variable_get(:"@#{k}")
 
             call_validator(FIELDS[k][:validation], var)
           end
@@ -133,7 +133,7 @@ module Prawn
             validator.call(value)
             # :nocov:
           when Symbol
-            send("#{validator}_validator", value)
+            send(:"#{validator}_validator", value)
           end
         end
 
