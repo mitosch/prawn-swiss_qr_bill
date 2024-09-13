@@ -7,6 +7,7 @@ AllCops:
   NewCops: enable
   Exclude:
     - prawn-swiss_qr_bill.gemspec
+    - gemfiles/vendor/bundle/**/*
 
 # Prawn is descriptive and needs more branches (methods)
 Metrics/AbcSize:
