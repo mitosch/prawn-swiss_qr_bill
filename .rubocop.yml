@@ -23,11 +23,8 @@ RSpec/ExampleLength:
 
 # Unlimited block length for specs
 Metrics/BlockLength:
-  AllowedMethods: ['describe']
+  IgnoredMethods: ['describe']
 
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - 'spec/**/*'
-
-RSpec/NoExpectationExample:
-  Enabled: false
