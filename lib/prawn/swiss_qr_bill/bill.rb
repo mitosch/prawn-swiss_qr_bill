@@ -25,12 +25,12 @@ module Prawn
 
       def set_font
         @doc.font_families.update(
-          'Inter' => {
-            normal: "#{FONT_DIR}/inter/Inter-Regular.ttf",
-            bold: "#{FONT_DIR}/inter/Inter-Bold.ttf"
+          'Noto' => {
+            normal: "#{FONT_DIR}/noto/NotoSans-Regular.ttf",
+            bold: "#{FONT_DIR}/noto/NotoSans-Regular.ttf"
           }
         )
-        @doc.font 'Inter'
+        @doc.font 'Noto'
       end
     end
   end
