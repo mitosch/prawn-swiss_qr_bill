@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'i18n', '~> 1.8'
   spec.add_dependency 'matrix', '~> 0.4'
   spec.add_dependency 'prawn', '~> 2.0'
-  spec.add_dependency 'rqrcode', '~> 2.0'
+  spec.add_dependency 'rqrcode', '>= 2.0', '< 4'
 
   spec.add_development_dependency 'pdf-reader', '~> 2.3'
   spec.add_development_dependency 'rspec', '~> 3.0'
